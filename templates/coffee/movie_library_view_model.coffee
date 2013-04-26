@@ -9,7 +9,7 @@ class DemoKoCoffee.MovieLibraryViewModel
     ]
     @editingTitle = ko.observable(false)
     @newTitle = ko.observable()
-    @count = ko.computed => @movies.length
+    @count = ko.computed => @movies().length
     @newMovieVM = new NewMovieViewModel(@movies)
     
   newMovie: => @newMovieVM.active(true)
@@ -28,8 +28,11 @@ class NewMovieViewModel
 
   constructor: (@movies) ->
     @active = ko.observable(false)
-    @title = ''
-    @relDate = ''
+    @relDate = @title = ''
+    @active.subscribe @activate
+    
+  activate: (active=false) => 
+    @relDate = @title = '' if active
     
   save: =>
     @active(false)
