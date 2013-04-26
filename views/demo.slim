@@ -3,6 +3,11 @@
     | Movie Library:
     span.title data-bind='text: title'
 
+  .movies data-bind='foreach: movies'
+    .movie
+      .name data-bind='text: title'
+      .release-date data-bind='text: releaseDate'
+    
 - content_for :javascripts do
   script src='/js/movie_library_view_model.js' type='text/javascript'
   
