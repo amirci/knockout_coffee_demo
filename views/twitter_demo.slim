@@ -1,9 +1,9 @@
 #twitter-demo
   .configuration
     .list-chooser
+      select data-bind='options: savedLists, optionsValue: "name", value: editingList.name'
       button data-bind='click: deleteList, enable: editingList.name' Delete
       button data-bind='click: saveChanges, enable: hasUnsavedChanges' Save
-      select data-bind='options: savedLists, optionsValue: "name", value: editingList.name'
 
       p 
         | Currently viewing 
@@ -32,3 +32,21 @@
           .tweet-info data-bind='text: created_at'
 
     pre data-bind="text: ko.toJSON(currentTweets, null, 2)"
+    
+- content_for :javascripts do
+  script src='http://knockoutjs.com/examples/resources/twitterApi.js' type='text/javascript'
+  script src='/js/twitter_demo_view_model.js' type='text/javascript'
+  
+  coffee:
+    $ ->
+      savedLists = [
+        { name: "Celebrities", userNames: ['JohnCleese', 'MCHammer', 'StephenFry', 'algore', 'StevenSanderson']},
+        { name: "Microsoft people", userNames: ['BillGates', 'shanselman', 'ScottGu']},
+        { name: "Tech pundits", userNames: ['Scobleizer', 'LeoLaporte', 'techcrunch', 'BoingBoing', 'timoreilly', 'codinghorror']}
+      ]
+
+      ko.applyBindings(new DemoKoCoffee.TwitterDemoViewModel(savedLists, "Tech pundits"))
+
+      # Using jQuery for Ajax loading indicator - nothing to do with Knockout
+      $(".loading-indicator").ajaxStart(-> $(this).fadeIn())
+        .ajaxComplete -> $(this).fadeOut()
