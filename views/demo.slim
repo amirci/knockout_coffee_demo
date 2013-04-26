@@ -1,9 +1,13 @@
 #library-demo
   .title
     | Movie Library:
-    span.title data-bind='text: title'
-    i.icon-edit data-bind='click: editTitle'
-    input type='text' data-bind='visible: editingTitle'
+    .viewing data-bind='visible: !editingTitle()'
+      span.title data-bind='text: title'
+      i.icon-edit data-bind='click: editTitle'
+    .editing data-bind='visible: editingTitle'
+      input type='text' data-bind='value: newTitle'
+      i.icon-ok-sign data-bind='click: saveEditing'
+      i.icon-ban-circle data-bind='click: cancelEditing'
 
   .movies data-bind='foreach: movies'
     .movie

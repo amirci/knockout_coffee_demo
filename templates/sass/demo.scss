@@ -7,9 +7,15 @@
       font-weight: 600;
     }
     
-    i {
-      margin-left: 15px;
+    .viewing, .editing { 
+      display: inline-block;
+
+      i {
+        margin-left: 15px;
+        cursor: pointer;
+      }
     }
+    
   }
   
   .movies {
