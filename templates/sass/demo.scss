@@ -3,8 +3,9 @@
   .title {
     @extend h1;
     .title {
-      margin-left: 10px;
+      margin-left: 20px;
       font-weight: 600;
+      color: $blue;
     }
     
     .viewing, .editing { 
