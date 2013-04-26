@@ -9,10 +9,19 @@
       i.icon-ok-sign data-bind='click: saveEditing'
       i.icon-ban-circle data-bind='click: cancelEditing'
 
-  .your-movies
+  .your-movies data-bind='visible: !newMovieVM.active()'
     | So far you have 
     .count data-bind='text: count'
     | movies
+    button data-bind='click: newMovie' Add more 
+
+  .new-movie data-bind='visible: newMovieVM.active(), with: newMovieVM'
+    .label Title:
+    input type='text' data-bind='value: title'
+    .label Release Date:
+    input type='text' data-bind='value: relDate'
+    i.icon-ok-sign data-bind='click: save'
+    i.icon-ban-circle data-bind='click: cancel'
     
   .movies data-bind='foreach: movies'
     .movie
