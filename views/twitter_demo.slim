@@ -1,0 +1,34 @@
+#twitter-demo
+  .configuration
+    .list-chooser
+      button data-bind='click: deleteList, enable: editingList.name' Delete
+      button data-bind='click: saveChanges, enable: hasUnsavedChanges' Save
+      select data-bind='options: savedLists, optionsValue: "name", value: editingList.name'
+
+      p 
+        | Currently viewing 
+        span data-bind='text: editingList.userNames().length'
+        | user(s):
+        
+      .current-users data-bind='with: editingList'
+        ul data-bind='foreach: userNames'
+          li
+            button data-bind='click: $root.removeUser' Remove
+            div data-bind="text: $data"
+            
+        form data-bind='submit: addUser'
+          label Add user:
+          input data-bind='value: userNameToAdd, valueUpdate: "keyup", css: { invalid: !userNameToAddIsValid() }'
+          button data-bind='enable: canAddUserName' type='submit' Add
+
+  .tweets
+    .loading-indicator Loading...
+    table width='100%' data-bind='foreach: currentTweets'
+      tr
+        td: img data-bind='attr: { src: profile_image_url }'
+        td
+          a.twitter-user data-bind='attr: { href: "http://twitter.com/" + from_user }, text: from_user' href='http://twitter.com/${ from_user }' 
+          span data-bind="text: text"
+          .tweet-info data-bind='text: created_at'
+
+    pre data-bind="text: ko.toJSON(currentTweets, null, 2)"

@@ -1,0 +1,30 @@
+doctype 5
+html
+  head
+    title MavenThought Inc.
+    meta charset="UTF-8"
+    link rel="stylesheet" href="/css/styles.css"
+     
+  body 
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          a.brand href='#' Demo Knockout & Coffeescript
+
+    .container-fluid
+      .row-fluid
+        .span3
+          .well.sidenav-bar
+            ul.nav.nav-list
+              li.nav-header Demos
+              li: a href='/twitter_demo' Twitter Demo with CS
+          
+        .span9
+          == yield
+
+    script src="/javascripts/jquery-1.8.3.min.js" type="text/javascript" 
+    script src="/javascripts/bootstrap/js/bootstrap.min.js" type="text/javascript" 
+    script src="/javascripts/knockout-2.1.0.js" type="text/javascript" 
+    
+    == yield_content :javascripts
+

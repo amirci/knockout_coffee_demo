@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'sinatra/content_for'
 require 'slim'
 require 'sass'
 require 'coffee-script'
@@ -12,6 +13,7 @@ module DemoKoCoffee
   class Website < Sinatra::Base
     use SassHandler
     use CoffeeHandler
+    helpers Sinatra::ContentFor
 
     configure :test do
       # enable :logging
@@ -27,6 +29,10 @@ module DemoKoCoffee
     
     get '/home' do
       slim :home
+    end
+    
+    get '/twitter_demo' do
+      slim :twitter_demo
     end
   end
 end
