@@ -9,6 +9,11 @@
       i.icon-ok-sign data-bind='click: saveEditing'
       i.icon-ban-circle data-bind='click: cancelEditing'
 
+  .your-movies
+    | So far you have 
+    .count data-bind='text: count'
+    | movies
+    
   .movies data-bind='foreach: movies'
     .movie
       .name data-bind='text: title'
