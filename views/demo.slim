@@ -2,6 +2,7 @@
   .title
     | Movie Library:
     span.title data-bind='text: title'
+    i.icon-edit data-bind='click: editTitle'
 
   .movies data-bind='foreach: movies'
     .movie
