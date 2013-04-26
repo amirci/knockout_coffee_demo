@@ -30,8 +30,6 @@ $pink:                  #c3325f !default;
 $purple:                #7a43b6 !default;
 
 
-$ccp-green: #7ac943;
-
 // Scaffolding
 // -------------------------
 $bodyBackground:        $white !default;
@@ -41,8 +39,7 @@ $textColor:             $gray !default;
 
 // Links
 // -------------------------
-//$linkColor:             #08c !default;
-$linkColor:             $ccp-green !default;
+$linkColor:             #08c !default;
 $linkColorHover:        darken($linkColor, 15%) !default;
 
 
@@ -60,8 +57,7 @@ $altFontFamily:         $serifFontFamily !default;
 
 $headingsFontFamily:    inherit !default; // empty to use BS default, $baseFontFamily
 $headingsFontWeight:    bold !default;    // instead of browser default, bold
-//$headingsColor:         inherit !default; // empty to use BS default, $textColor
-$headingsColor:         $ccp-green !default; // empty to use BS default, $textColor
+$headingsColor:         inherit !default; // empty to use BS default, $textColor
 
 // Tables
 // -------------------------

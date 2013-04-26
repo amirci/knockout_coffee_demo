@@ -1,0 +1,13 @@
+#library-demo
+  .title
+    | Movie Library:
+    span.title data-bind='text: title'
+
+- content_for :javascripts do
+  script src='/js/movie_library_view_model.js' type='text/javascript'
+  
+  coffee:
+    $ -> ko.applyBindings(new DemoKoCoffee.MovieLibraryViewModel('Awesome Movies'))
+
+
+    

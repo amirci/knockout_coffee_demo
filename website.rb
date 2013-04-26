@@ -31,6 +31,10 @@ module DemoKoCoffee
       slim :home
     end
     
+    get '/demo' do
+      slim :demo
+    end
+    
     get '/twitter_demo' do
       slim :twitter_demo
     end
