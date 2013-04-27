@@ -1,37 +1,42 @@
 #twitter-demo
   .configuration
     .list-chooser
-      select data-bind='options: savedLists, optionsValue: "name", value: editingList.name'
-      button data-bind='click: deleteList, enable: editingList.name' Delete
-      button data-bind='click: saveChanges, enable: hasUnsavedChanges' Save
+      .brand Twitter demo
+      .list-selection
+        | Choose a list
+        select data-bind="options: savedLists, optionsText: 'name', optionsValue: 'userNames', value: twitterList"
 
-      p 
+  .row-fluid
+    .span6
+      .viewing
         | Currently viewing 
-        span data-bind='text: editingList.userNames().length'
+        span.badge.badge-info data-bind='text: twitterList().length, visible: !loadingTweets()'
+        i.icon-refresh.icon-spin.badge.badge-info data-bind='visible: loadingTweets'
         | user(s):
         
-      .current-users data-bind='with: editingList'
-        ul data-bind='foreach: userNames'
+        
+      .current-users
+        ul data-bind='foreach: twitterList'
           li
-            button data-bind='click: $root.removeUser' Remove
-            div data-bind="text: $data"
-            
-        form data-bind='submit: addUser'
+            .twitter-id data-bind="text: $data"
+            i.icon-minus-sign data-bind='click: $parent.removeFromList'
+        
+        form.add-user data-bind='with: addUserVM'
           label Add user:
-          input data-bind='value: userNameToAdd, valueUpdate: "keyup", css: { invalid: !userNameToAddIsValid() }'
-          button data-bind='enable: canAddUserName' type='submit' Add
+          input data-bind='value: newUser'
+          button type='submit' data-bind='click: add' Add
 
-  .tweets
-    .loading-indicator Loading...
-    table width='100%' data-bind='foreach: currentTweets'
-      tr
-        td: img data-bind='attr: { src: profile_image_url }'
-        td
-          a.twitter-user data-bind='attr: { href: "http://twitter.com/" + from_user }, text: from_user' href='http://twitter.com/${ from_user }' 
-          span data-bind="text: text"
-          .tweet-info data-bind='text: created_at'
+    .span6
+      .tweets
+        table width='100%' 
+          tbody data-bind='foreach: currentTweets'
+            tr
+              td: img data-bind='attr: { src: profile_image_url }'
+              td
+                a.twitter-user data-bind="attr: { href: 'http://twitter.com/' + from_user }, text: from_user"
+                span data-bind="text: text"
+                .tweet-info data-bind='text: created_at'
 
-    pre data-bind="text: ko.toJSON(currentTweets, null, 2)"
     
 - content_for :javascripts do
   script src='http://knockoutjs.com/examples/resources/twitterApi.js' type='text/javascript'
