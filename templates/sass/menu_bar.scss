@@ -1,0 +1,10 @@
+.menu-container {
+  @extend .well;
+  @extend .sidenav-bar;
+  
+  > ul {
+    @extend .nav;
+    @extend .nav-list;
+    min-height: 300px;
+  }
+}
