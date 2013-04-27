@@ -1,44 +1,22 @@
 class DemoKoCoffee.TwitterDemoViewModel
   
   constructor: (@lists, selected) ->
-    @savedLists = ko.observableArray(lists)
-    @editingList = 
-      name: ko.observable(lists)
-      userNames: ko.observableArray()
-      
+    @savedLists = ko.observableArray(@lists)
+    @editingList = ko.observableArray()
+    @twitterList = ko.observableArray()
     @userNameToAdd = ko.observable("")
     @currentTweets = ko.observableArray()
+    @hasUnsavedChanges = ko.computed => false
 
-    @hasUnsavedChanges = ko.computed =>
-      return this.editingList.userNames().length > 0 if !this.editingList.name()
-      savedData = @findSavedList(this.editingList.name()).userNames
-      editingData = this.editingList.userNames()
-      savedData.join("|") != editingData.join("|")
- 
-    @userNameToAddIsValid = ko.computed => this.userNameToAdd() == "" || this.userNameToAdd().match(/^\s*[a-zA-Z0-9_]{1,15}\s*$/) != null
+    # The active user tweets are (asynchronously) from twitterList
+    ko.computed => twitterApi.getTweetsForUsers @twitterList(), @currentTweets
       
-    @canAddUserName = ko.computed => this.userNameToAddIsValid() && this.userNameToAdd() != ""
 
-    # The active user tweets are (asynchronously) computed from editingList.userNames
-    ko.computed => twitterApi.getTweetsForUsers this.editingList.userNames(), this.currentTweets()
+  addUser: =>
 
-    ko.computed =>
-      # Observe viewModel.editingList.name(), so when it changes (i.e., user selects a different list) we know to copy the saved list into the editing list
-      savedList = this.findSavedList(this.editingList.name())
-      if savedList
-        userNamesCopy = savedList.userNames.slice(0)
-        this.editingList.userNames(userNamesCopy)
-      else 
-        this.editingList.userNames([])
-      
   findSavedList: (name) =>
     lists = this.savedLists()
     ko.utils.arrayFirst lists, (list) -> list.name == name
-
-  addUser: =>
-    if this.userNameToAdd() && this.userNameToAddIsValid()
-      this.editingList.userNames.push(this.userNameToAdd())
-      this.userNameToAdd("")
 
   removeUser: => this.editingList.userNames.remove(userName) 
 
