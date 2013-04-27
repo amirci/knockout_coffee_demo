@@ -21,10 +21,10 @@
             .twitter-id data-bind="text: $data"
             i.icon-minus-sign data-bind='click: $parent.removeFromList'
         
-        form 
+        form.add-user data-bind='with: addUserVM'
           label Add user:
-          input 
-          button type='submit' Add
+          input data-bind='value: newUser'
+          button type='submit' data-bind='click: add' Add
 
     .span6
       .tweets

@@ -63,13 +63,16 @@
       };
       
     }
-    
+  }
+
+  .add-user {
     button {
-      display: inline-block;
-      margin-left: 10px;
+      @extend .btn;
+      @extend .btn-primary;
+      min-width: 100px;
+      margin-left: 20px;
     }
   }
-  
   .tweets {
     max-height: 300px;
     overflow-y: scroll;
