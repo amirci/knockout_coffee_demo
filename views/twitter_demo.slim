@@ -10,8 +10,10 @@
     .span6
       .viewing
         | Currently viewing 
-        span.badge.badge-info data-bind='text: twitterList().length'
+        span.badge.badge-info data-bind='text: twitterList().length, visible: !loadingTweets()'
+        i.icon-refresh.icon-spin.badge.badge-info data-bind='visible: loadingTweets'
         | user(s):
+        
         
       .current-users
         ul data-bind='foreach: twitterList'
@@ -26,7 +28,6 @@
 
     .span6
       .tweets
-        .loading-indicator Loading...
         table width='100%' 
           tbody data-bind='foreach: currentTweets'
             tr

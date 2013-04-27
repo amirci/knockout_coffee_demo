@@ -30,7 +30,7 @@
 
   .viewing {
     margin-bottom: 20px;
-    span {
+    span, i {
       margin: 0 5px;
     }
   }
@@ -73,6 +73,23 @@
   .tweets {
     max-height: 300px;
     overflow-y: scroll;
+    
+    table {
+      background: $black;
+      color: $white;
+      font-size: .8em;
+      
+      tr {
+        .twitter-user {
+          margin-right: 10px;
+        }
+        
+        td:first-child {
+          padding: 10px;
+          vertical-align: top;
+        }
+      }
+    }
   }
   
 
