@@ -1,15 +1,16 @@
 #twitter-demo
-  header Twitter demo with Coffeescript
   .configuration
     .list-chooser
-      | Choose a list
-      select data-bind="options: savedLists, optionsText: 'name', optionsValue: 'userNames', value: twitterList"
+      .brand Twitter demo
+      .list-selection
+        | Choose a list
+        select data-bind="options: savedLists, optionsText: 'name', optionsValue: 'userNames', value: twitterList"
 
   .row-fluid
     .span6
-      p 
+      .viewing
         | Currently viewing 
-        span data-bind='text: twitterList().length'
+        span.badge.badge-info data-bind='text: twitterList().length'
         | user(s):
         
       .current-users
