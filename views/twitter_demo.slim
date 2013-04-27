@@ -17,7 +17,7 @@
         ul data-bind='foreach: twitterList'
           li
             .twitter-id data-bind="text: $data"
-            button Remove
+            i.icon-minus-sign data-bind='click: $parent.removeFromList'
         
         form 
           label Add user:

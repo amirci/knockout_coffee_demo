@@ -18,7 +18,7 @@ class DemoKoCoffee.TwitterDemoViewModel
     lists = this.savedLists()
     ko.utils.arrayFirst lists, (list) -> list.name == name
 
-  removeUser: => this.editingList.userNames.remove(userName) 
+  removeFromList: (name) => @twitterList.remove(name) 
 
   saveChanges: =>
     saveAs = prompt("Save as", this.editingList.name())

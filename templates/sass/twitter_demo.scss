@@ -36,10 +36,32 @@
   }
   
   .current-users {
+    ul {list-style-type: none;}
+    
     .twitter-id {
       display: inline-block;
       min-width: 150px;
+    }
+    
+    li {
+      background: $grayLighter;
+      border: 1px solid $blue;
       margin-bottom: 10px;
+      @include border-radius(6px);
+      padding-left: 20px;
+      line-height: 30px;
+      width: 180px;
+      i {
+        color: $red;
+        line-height: 20px;
+        display: none;
+        cursor: pointer;
+      }
+      
+      &:hover i {
+        display: inline;
+      };
+      
     }
     
     button {
